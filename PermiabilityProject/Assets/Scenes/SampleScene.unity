@@ -444,6 +444,7 @@ GameObject:
   - component: {fileID: 980826141}
   - component: {fileID: 980826140}
   - component: {fileID: 980826139}
+  - component: {fileID: 980826143}
   m_Layer: 0
   m_Name: Liquid
   m_TagString: Untagged
@@ -546,6 +547,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1155720654227310728}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &980826143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980826138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7455f1dc6244b54eb2a468a29aa6878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!33 &193972131811974583
 MeshFilter:
   m_ObjectHideFlags: 0
