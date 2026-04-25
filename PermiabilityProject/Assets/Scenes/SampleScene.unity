@@ -741,12 +741,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7455f1dc6244b54eb2a468a29aa6878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  liquidSize: 1
+  liquidSize: 5
   liquidColor: {r: 0, g: 0, b: 1, a: 1}
   insideBag: {fileID: 3857991251330987285}
-  insideliquidSize: 1
+  insideliquidSize: 4
   insideliquidColor: {r: 1, g: 0, b: 0.018271208, a: 1}
   runSim: 0
+  diffusionSpeed: 0.01
 --- !u!1 &1483702608
 GameObject:
   m_ObjectHideFlags: 0

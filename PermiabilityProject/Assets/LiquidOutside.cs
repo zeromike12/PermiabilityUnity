@@ -2,56 +2,86 @@ using UnityEngine;
 
 public class LiquidOutside : MonoBehaviour
 {
-    Renderer renderer;// dont touch
-    Renderer rendererOther;// dont touch
-    public float liquidSize= 1;// size of the chemical. Smaller wins over larger.
-    public Color liquidColor = Color.blue;// base color of chemical do not change.
+    Renderer rendererComponent;
+    Renderer rendererOther;
+
+    public float liquidSize = 1;
+    public Color liquidColor = Color.blue;
+
     public GameObject insideBag;
-    public float insideliquidSize = 1;// size of the chemical. Smaller wins over larger.
-    public Color insideliquidColor = Color.blue;// base color of chemical do not change.
-    public bool runSim = false; // check to run simulation. This can be changed outside of the script with a start or stop.
+    public float insideliquidSize = 1;
+    public Color insideliquidColor = Color.blue;
+
+    public bool runSim = false;
+
+    // Controls how fast the visual diffusion happens
+    public float diffusionSpeed = 0.5f;
+    private float currentDiffusion = 0f;
+
     Material mat;
     Material matOther;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        //Beaker
-        renderer = GetComponent<Renderer>();
-        mat = renderer.material;//material controls for color
-        mat.SetColor("_BaseColor", liquidColor);// how to change color
-        //Inside Bag
+        // Beaker
+        rendererComponent = GetComponent<Renderer>();
+        mat = rendererComponent.material;
+
+        // Ensure the shader properties are initialized
+        mat.SetColor("_BaseColor", liquidColor);
+        mat.SetColor("_TargetColor", liquidColor);
+        mat.SetFloat("_DiffusionAmount", 0f);
+
+        // Inside Bag
         rendererOther = insideBag.GetComponent<Renderer>();
-        matOther = rendererOther.material;//material controls for color
-        matOther.SetColor("_BaseColor", insideliquidColor);// how to change color
+        matOther = rendererOther.material;
+
+        matOther.SetColor("_BaseColor", insideliquidColor);
+        matOther.SetColor("_TargetColor", insideliquidColor);
+        matOther.SetFloat("_DiffusionAmount", 0f);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (runSim)//runs the simulation
+        if (runSim)
         {
-            if(liquidSize<insideliquidSize)//todo: set 0 to the variable of the inside bag size, setup similar script to this for the inside bag.
+            // Increase the diffusion progress over time
+            currentDiffusion += Time.deltaTime * diffusionSpeed;
+            // Clamp it so it stops at 1.0 (equilibrium)
+            currentDiffusion = Mathf.Clamp01(currentDiffusion);
+
+            if (liquidSize < insideliquidSize)
             {
-                mat.SetColor("_BaseColor", liquidColor);
-                matOther.SetColor("_BaseColor", liquidColor);// how to change color
+                // The outside liquid is smaller, so it diffuses INTO the inside bag.
+                // The inside bag's target color becomes the outside liquid's color.
+                matOther.SetColor("_TargetColor", liquidColor);
+                matOther.SetFloat("_DiffusionAmount", currentDiffusion);
             }
-            else if (liquidSize>insideliquidSize)//same as before replace with variable of inside bag size
+            else if (liquidSize > insideliquidSize)
             {
-                mat.SetColor("_BaseColor", insideliquidColor);
-                matOther.SetColor("_BaseColor", insideliquidColor);// how to change color
+                // The inside liquid is smaller, so it diffuses INTO the outside beaker.
+                // The outside beaker's target color becomes the inside bag's color.
+                mat.SetColor("_TargetColor", insideliquidColor);
+                mat.SetFloat("_DiffusionAmount", currentDiffusion);
             }
             else
             {
-                //Set dialogue or something else to show that 2 chemicals of the same kind do nothing.
+                // Equilibrium or same size: no diffusion occurs.
+                Debug.Log("Molecules are the same size. No diffusion across the membrane.");
             }
         }
     }
 
-   public void setChemical(float size, Color color)//set chemical data outside of script. Through buttons or etc.
+    public void setChemical(float size, Color color)
     {
-      liquidSize=size;
-      liquidColor=color;
+        liquidSize = size;
+        liquidColor = color;
+        // Reset simulation visuals if a new chemical is set
+        if (mat != null)
+        {
+            mat.SetColor("_BaseColor", liquidColor);
+            mat.SetFloat("_DiffusionAmount", 0f);
+            currentDiffusion = 0f;
+        }
     }
-   
-
 }
