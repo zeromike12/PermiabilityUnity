@@ -6,11 +6,26 @@ public class ButtonsHandler : MonoBehaviour
 {
     public Button outsideButton;
     public Button insideButton;
+
+    public TextMeshProUGUI outsideLiquidLabel;
+    public TextMeshProUGUI insideLiquidLabel;
+
+    [Header("Outside liquids")]
+    public GameObject outsideHolder;
+    public Button IodineButton;
+    public Button SodBiButton;
+
+    [Header("Inside liquids")]
+    public GameObject insideHolder;
+    public Button StarchButton;
+    public Button MCresolButton;
+
     public Button runSimButton;
 
-    public TextMeshProUGUI choiceLabel;
+    public TextMeshProUGUI liquidLabel;
 
-    [HideInInspector] public string choice;
+    [HideInInspector] public string insideLiquidChoice;
+    [HideInInspector] public string outsideLiquidChoice;
 
     private liquidInside liquidInside;
     private LiquidOutside liquidOutside;
@@ -21,46 +36,98 @@ public class ButtonsHandler : MonoBehaviour
         liquidOutside = FindAnyObjectByType<LiquidOutside>();
         liquidInside = FindAnyObjectByType<liquidInside>();
 
+        outsideHolder.gameObject.SetActive(false);
+        insideHolder.gameObject.SetActive(false);
+
+        liquidLabel.gameObject.SetActive(false);
+
         runSimButton.interactable = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (insideLiquidChoice != null && outsideLiquidChoice != null)
+        {
+            runSimButton.interactable = true;
+        }
+        else
+        {
+            runSimButton.interactable = false;
+        }
     }
 
-    public void OutsideButtonClicked() {
-        choice = "OUTSIDE";
+    public void OutsideButtonClicked()
+    {
+        outsideHolder.SetActive(true);
         outsideButton.interactable = false;
+
+        insideHolder.SetActive(false);
         insideButton.interactable = true;
 
-        runSimButton.interactable = true;
-
-        choiceLabel.text = "Chosen: Outside";
+        liquidLabel.gameObject.SetActive(true);
+        liquidLabel.text = "Outside liquid";
     }
 
-    public void InsideButtonClicked() {
-        choice = "INSIDE";
+    public void InsideButtonClicked()
+    {
+        insideHolder.SetActive(true);
         insideButton.interactable = false;
+
+        outsideHolder.SetActive(false);
         outsideButton.interactable = true;
 
-        runSimButton.interactable = true;
-
-        choiceLabel.text = "Chosen: Inside";
+        liquidLabel.gameObject.SetActive(true);
+        liquidLabel.text = "Inside liquid";
     }
 
-    public void RunSimButtonClicked() {
-        insideButton.transform.parent.gameObject.SetActive(false);
-        runSimButton.gameObject.SetActive(false);
-        choiceLabel.gameObject.SetActive(false);
-        choiceLabel.transform.parent.transform.Find("TopLabel").gameObject.SetActive(false);
+    public void StarchButtonClicked()
+    {
+        insideLiquidChoice = "Starch";
+        insideLiquidLabel.text = "Inside Liquid: Starch";
 
-        if (choice == "INSIDE") {
-            liquidInside.runSim = true;
-        }
-        else if (choice == "OUTSIDE") {
-            liquidOutside.runSim = true;
-        }
+        StarchButton.interactable = false;
+        MCresolButton.interactable = true;
+    }
+
+    public void MCresolButtonClicked()
+    {
+        insideLiquidChoice = "MCresol";
+        insideLiquidLabel.text = "Inside Liquid: M-Cresol";
+
+        MCresolButton.interactable = false;
+        StarchButton.interactable = true;
+    }
+
+    public void IodineButtonClicked()
+    {
+        outsideLiquidChoice = "Iodine";
+        outsideLiquidLabel.text = "Outside Liquid: Iodine";
+
+        IodineButton.interactable = false;
+        SodBiButton.interactable = true;
+    }
+
+    public void SodBiButtonClicked()
+    {
+        outsideLiquidChoice = "SodBi";
+        outsideLiquidLabel.text = "Outside Liquid: Sodium Bicarbonate";
+
+        SodBiButton.interactable = false;
+        IodineButton.interactable = true;
+    }
+
+    public void RunSimButtonClicked()
+    {
+        transform.Find("Holder").gameObject.SetActive(false);
+
+        //insideButton.transform.parent.gameObject.SetActive(false);
+        runSimButton.gameObject.SetActive(false);
+
+        //if (choice == "INSIDE") {
+        //    liquidInside.runSim = true;
+        //}
+        //else if (choice == "OUTSIDE") {
+        //    liquidOutside.runSim = true;
+        //}
     }
 }
