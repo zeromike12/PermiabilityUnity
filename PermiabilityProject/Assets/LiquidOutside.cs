@@ -14,7 +14,7 @@ public class LiquidOutside : MonoBehaviour
 
     public bool runSim = false;
 
-    // Controls how fast the visual diffusion happens
+    
     public float diffusionSpeed = 0.5f;
     private float currentDiffusion = 0f;
 
@@ -40,14 +40,15 @@ public class LiquidOutside : MonoBehaviour
         matOther.SetColor("_TargetColor", insideliquidColor);
         matOther.SetFloat("_DiffusionAmount", 0f);
     }
+    
 
     void Update()
     {
+
         if (runSim)
         {
             // Increase the diffusion progress over time
             currentDiffusion += Time.deltaTime * diffusionSpeed;
-            // Clamp it so it stops at 1.0 (equilibrium)
             currentDiffusion = Mathf.Clamp01(currentDiffusion);
 
             if (liquidSize < insideliquidSize)
@@ -56,6 +57,7 @@ public class LiquidOutside : MonoBehaviour
                 // The inside bag's target color becomes the outside liquid's color.
                 matOther.SetColor("_TargetColor", liquidColor);
                 matOther.SetFloat("_DiffusionAmount", currentDiffusion);
+                insideBag.transform.localScale += new Vector3(0.00001f, 0.00001f, 0.00001f);
             }
             else if (liquidSize > insideliquidSize)
             {
@@ -66,9 +68,15 @@ public class LiquidOutside : MonoBehaviour
             }
             else
             {
-                // Equilibrium or same size: no diffusion occurs.
                 Debug.Log("Molecules are the same size. No diffusion across the membrane.");
             }
+        }
+        else
+        {
+            mat.SetColor("_BaseColor", liquidColor);
+            matOther.SetColor("_BaseColor", insideliquidColor);
+            mat.SetFloat("_DiffusionAmount", -1f);
+            matOther.SetFloat("_DiffusionAmount", -1f);
         }
     }
 
