@@ -84,7 +84,7 @@ public class ButtonsHandler : MonoBehaviour
     {
         insideLiquidChoice = "Starch";
         insideLiquidLabel.text = "Inside Liquid: Starch";
-
+        liquidOutside.insideliquidSize = 1;
         StarchButton.interactable = false;
         MCresolButton.interactable = true;
     }
@@ -93,7 +93,7 @@ public class ButtonsHandler : MonoBehaviour
     {
         insideLiquidChoice = "MCresol";
         insideLiquidLabel.text = "Inside Liquid: M-Cresol";
-
+        liquidOutside.insideliquidSize = 2;
         MCresolButton.interactable = false;
         StarchButton.interactable = true;
     }
@@ -102,7 +102,7 @@ public class ButtonsHandler : MonoBehaviour
     {
         outsideLiquidChoice = "Iodine";
         outsideLiquidLabel.text = "Outside Liquid: Iodine";
-
+        liquidOutside.liquidSize = 3;
         IodineButton.interactable = false;
         SodBiButton.interactable = true;
     }
@@ -111,7 +111,7 @@ public class ButtonsHandler : MonoBehaviour
     {
         outsideLiquidChoice = "SodBi";
         outsideLiquidLabel.text = "Outside Liquid: Sodium Bicarbonate";
-
+        liquidOutside.liquidSize = 4;
         SodBiButton.interactable = false;
         IodineButton.interactable = true;
     }
