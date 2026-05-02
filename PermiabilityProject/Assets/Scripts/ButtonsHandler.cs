@@ -27,14 +27,14 @@ public class ButtonsHandler : MonoBehaviour
     [HideInInspector] public string insideLiquidChoice;
     [HideInInspector] public string outsideLiquidChoice;
 
-    private liquidInside liquidInside;
-    private LiquidOutside liquidOutside;
+    //public liquidInside liquidInside;
+    public LiquidOutside liquidOutside;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         liquidOutside = FindAnyObjectByType<LiquidOutside>();
-        liquidInside = FindAnyObjectByType<liquidInside>();
+        //liquidInside = FindAnyObjectByType<liquidInside>();
 
         outsideHolder.gameObject.SetActive(false);
         insideHolder.gameObject.SetActive(false);
@@ -123,11 +123,6 @@ public class ButtonsHandler : MonoBehaviour
         //insideButton.transform.parent.gameObject.SetActive(false);
         runSimButton.gameObject.SetActive(false);
 
-        //if (choice == "INSIDE") {
-        //    liquidInside.runSim = true;
-        //}
-        //else if (choice == "OUTSIDE") {
-        //    liquidOutside.runSim = true;
-        //}
+        liquidOutside.runSim = true;
     }
 }
