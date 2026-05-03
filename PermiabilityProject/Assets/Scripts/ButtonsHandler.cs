@@ -7,6 +7,7 @@ public class ButtonsHandler : MonoBehaviour
     public Button outsideButton;
     public Button insideButton;
 
+    public GameObject liquidLabelsHolder;
     public TextMeshProUGUI outsideLiquidLabel;
     public TextMeshProUGUI insideLiquidLabel;
 
@@ -24,10 +25,9 @@ public class ButtonsHandler : MonoBehaviour
 
     public TextMeshProUGUI liquidLabel;
 
-    [HideInInspector] public string insideLiquidChoice;
-    [HideInInspector] public string outsideLiquidChoice;
+    [HideInInspector] public string insideLiquidChoice = "";
+    [HideInInspector] public string outsideLiquidChoice = "";
 
-    //public liquidInside liquidInside;
     public LiquidOutside liquidOutside;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,7 +46,7 @@ public class ButtonsHandler : MonoBehaviour
 
     private void Update()
     {
-        if (insideLiquidChoice != null && outsideLiquidChoice != null)
+        if (insideLiquidChoice !=  "" && outsideLiquidChoice != "")
         {
             runSimButton.interactable = true;
         }
@@ -120,7 +120,14 @@ public class ButtonsHandler : MonoBehaviour
     {
         transform.Find("Holder").gameObject.SetActive(false);
 
-        //insideButton.transform.parent.gameObject.SetActive(false);
+        outsideHolder.gameObject.SetActive(false);
+        insideHolder.gameObject.SetActive(false);
+
+        outsideLiquidLabel.gameObject.SetActive(false);
+        insideLiquidLabel.gameObject.SetActive(false);
+
+        liquidLabel.gameObject.SetActive(false);
+
         runSimButton.gameObject.SetActive(false);
 
         liquidOutside.runSim = true;

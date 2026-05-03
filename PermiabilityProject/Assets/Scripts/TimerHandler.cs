@@ -27,9 +27,11 @@ public class TimerHandler : MonoBehaviour
     void Update()
     {
         if (liquidOutside.runSim) {
+            timerLabel.gameObject.SetActive(true);
             seconds += (Time.deltaTime * 60); // 1 hour simulation time over 1 real-time minute
 
             timerLabel.text = FormatTime();
         }
+        else timerLabel.gameObject.SetActive(false);
     }
 }
