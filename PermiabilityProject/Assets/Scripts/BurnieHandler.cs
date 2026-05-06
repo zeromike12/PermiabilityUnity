@@ -20,7 +20,7 @@ public class BurnieHandler : MonoBehaviour {
             burnie.gameObject.SetActive(true);
             speechBubble.gameObject.SetActive(true);
 
-            if (Keyboard.current.spaceKey.wasPressedThisFrame) {
+            if (Keyboard.current.spaceKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame) {
                 // Skip is spacebar is pressed
                 SkipDialogue();
             }
@@ -31,10 +31,6 @@ public class BurnieHandler : MonoBehaviour {
                 speechBubble.gameObject.SetActive(false);
             }
         }
-    }
-
-    private void OnMouseDown() {
-        if (isTalking) SkipDialogue();
     }
 
     public void Talk(string fullText) {
