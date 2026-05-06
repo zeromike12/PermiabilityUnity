@@ -1683,6 +1683,7 @@ MonoBehaviour:
   insideliquidSize: 1
   insideliquidColor: {r: 1, g: 0, b: 0.018271208, a: 1}
   runSim: 0
+  diffusionSpeed: 0.5
 --- !u!1 &1108165587
 GameObject:
   m_ObjectHideFlags: 0
@@ -1952,6 +1953,7 @@ MonoBehaviour:
   liquidLabel: {fileID: 1870023666}
   insideLiquidChoice: 
   outsideLiquidChoice: 
+  liquidOutside: {fileID: 980826143}
 --- !u!1 &1263985424
 GameObject:
   m_ObjectHideFlags: 0

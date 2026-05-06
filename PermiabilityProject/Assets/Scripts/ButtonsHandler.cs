@@ -84,36 +84,52 @@ public class ButtonsHandler : MonoBehaviour
     {
         insideLiquidChoice = "Starch";
         insideLiquidLabel.text = "Inside Liquid: Starch";
-        liquidOutside.insideliquidSize = 1;
+        liquidOutside.insideliquidSize = 100f;
+        liquidOutside.insideLiquidName = "Starch";
+        liquidOutside.insideliquidColor = new Color(1f, 1f, 1f, 0.3f); // Milky white/clear
+
         StarchButton.interactable = false;
         MCresolButton.interactable = true;
+        liquidOutside.UpdateStartingColors();
     }
 
     public void MCresolButtonClicked()
     {
         insideLiquidChoice = "MCresol";
         insideLiquidLabel.text = "Inside Liquid: M-Cresol";
-        liquidOutside.insideliquidSize = 2;
+        liquidOutside.insideliquidSize = 15f;
+        liquidOutside.insideLiquidName = "MCresol";
+        liquidOutside.insideliquidColor = Color.yellow;
+
         MCresolButton.interactable = false;
         StarchButton.interactable = true;
+        liquidOutside.UpdateStartingColors();
     }
 
     public void IodineButtonClicked()
     {
         outsideLiquidChoice = "Iodine";
         outsideLiquidLabel.text = "Outside Liquid: Iodine";
-        liquidOutside.liquidSize = 3;
+        liquidOutside.liquidSize = 2f;
+        liquidOutside.outsideLiquidName = "Iodine";
+        liquidOutside.liquidColor = new Color(0.8f, 0.4f, 0f);
+
         IodineButton.interactable = false;
         SodBiButton.interactable = true;
+        liquidOutside.UpdateStartingColors();
     }
 
     public void SodBiButtonClicked()
     {
         outsideLiquidChoice = "SodBi";
         outsideLiquidLabel.text = "Outside Liquid: Sodium Bicarbonate";
-        liquidOutside.liquidSize = 4;
+        liquidOutside.liquidSize = 1f;
+        liquidOutside.outsideLiquidName = "SodBi";
+        liquidOutside.liquidColor = new Color(0.9f, 0.9f, 0.9f, 0.4f);
+
         SodBiButton.interactable = false;
         IodineButton.interactable = true;
+        liquidOutside.UpdateStartingColors();
     }
 
     public void RunSimButtonClicked()
