@@ -1,23 +1,25 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     BurnieHandler burnieHandler;
-    public BurnieDialogue burnieDialogue;
 
     public int dialogueIndex = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    void Start() {
         burnieHandler = FindAnyObjectByType<BurnieHandler>();
 
-        burnieHandler.Talk(burnieDialogue.Lines[0]);
+        if (burnieHandler != null) {
+            burnieHandler.Talk(0);
+        }
+        else {
+            Debug.LogError("[GameManager] BurnieHandler returned null.");
+        }
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+
     }
 }
