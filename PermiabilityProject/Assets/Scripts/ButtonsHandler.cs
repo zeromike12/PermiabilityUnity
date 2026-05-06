@@ -29,11 +29,18 @@ public class ButtonsHandler : MonoBehaviour
 
     //public liquidInside liquidInside;
     public LiquidOutside liquidOutside;
+    public LiquidOutside liquidOutside2;
+    public LiquidOutside liquidOutside3;
+    public LiquidOutside liquidOutside4;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         liquidOutside = FindAnyObjectByType<LiquidOutside>();
+        liquidOutside2 = FindAnyObjectByType<LiquidOutside>();
+        liquidOutside3 = FindAnyObjectByType<LiquidOutside>();
+        liquidOutside4 = FindAnyObjectByType<LiquidOutside>();
+
         //liquidInside = FindAnyObjectByType<liquidInside>();
 
         outsideHolder.gameObject.SetActive(false);
