@@ -27,6 +27,7 @@ public class ButtonsHandler : MonoBehaviour {
     public Button confirmPredictionButton;
 
     public TextMeshProUGUI liquidLabel;
+    public GameObject creditScreen;
 
     [HideInInspector] public string insideLiquidChoice = "";
     [HideInInspector] public string outsideLiquidChoice = "";
@@ -38,6 +39,9 @@ public class ButtonsHandler : MonoBehaviour {
         liquidOutside = FindAnyObjectByType<LiquidOutside>();
         burnieHandler = FindAnyObjectByType<BurnieHandler>();
         burnieDialogue = FindAnyObjectByType<BurnieDialogue>();
+
+        IodineButton.interactable = false;
+        SodBiButton.interactable = false;
 
         outsideHolder.gameObject.SetActive(false);
         insideHolder.gameObject.SetActive(false);
@@ -59,6 +63,15 @@ public class ButtonsHandler : MonoBehaviour {
             case 6:
                 // Both liquids should be selected, check if they're correct
                 if (insideLiquidChoice == "Starch" && outsideLiquidChoice == "SodBi") {
+                    runSimButton.interactable = true;
+                }
+                else {
+                    runSimButton.interactable = false;
+                }
+                break;
+            case 10:
+                // Both liquids should be selected, check if they're correct
+                if (insideLiquidChoice == "MCresol" && outsideLiquidChoice == "Iodine") {
                     runSimButton.interactable = true;
                 }
                 else {
@@ -101,8 +114,12 @@ public class ButtonsHandler : MonoBehaviour {
         MCresolButton.interactable = true;
 
         if (burnieHandler.index == 3) {
+            // First, click the "Inside" button and choose "Starch".
             burnieHandler.Talk(4);
             burnieHandler.index = 4;
+
+            IodineButton.interactable = true;
+            SodBiButton.interactable = true;
         }
     }
 
@@ -112,6 +129,15 @@ public class ButtonsHandler : MonoBehaviour {
         liquidOutside.insideliquidSize = 2;
         MCresolButton.interactable = false;
         StarchButton.interactable = true;
+
+        if (burnieHandler.index == 8) {
+            // Now, let's take a look at the other options. Go ahead and select "M-Cresol" from the "Inside" liquids screen.
+            IodineButton.interactable = true;
+            SodBiButton.interactable = true;
+
+            burnieHandler.Talk(9);
+            burnieHandler.index = 9;
+        }
     }
 
     public void IodineButtonClicked() {
@@ -120,6 +146,13 @@ public class ButtonsHandler : MonoBehaviour {
         liquidOutside.liquidSize = 3;
         IodineButton.interactable = false;
         SodBiButton.interactable = true;
+
+        if (burnieHandler.index == 9) {
+            // Next, select "Iodine" from the "Outside" liquids screen.
+
+            burnieHandler.Talk(10);
+            burnieHandler.index = 10;
+        }
     }
 
     public void SodBiButtonClicked() {
@@ -130,6 +163,7 @@ public class ButtonsHandler : MonoBehaviour {
         IodineButton.interactable = true;
 
         if (burnieHandler.index == 4) {
+            // Next, click the "Outside" button and choose "Sodium Bicarbonate".
             burnieHandler.Talk(5);
             burnieHandler.index = 5;
         }
@@ -143,26 +177,66 @@ public class ButtonsHandler : MonoBehaviour {
 
             confirmPredictionButton.gameObject.SetActive(false);
         }
+        else if (burnieHandler.index == 10) {
+            // Clicked on the second prediction
+            burnieHandler.Talk(11);
+            burnieHandler.index = 11;
+
+            confirmPredictionButton.gameObject.SetActive(false);
+        }
     }
 
     public void RunSimButtonClicked() {
-        // Deactivate all main UI elements
-        transform.Find("Holder").gameObject.SetActive(false);
+        if (!liquidOutside.runSim) {
+            // Run sim
 
-        outsideHolder.gameObject.SetActive(false);
-        insideHolder.gameObject.SetActive(false);
+            // Deactivate all main UI elements
+            transform.Find("Holder").gameObject.SetActive(false);
 
-        outsideLiquidLabel.gameObject.SetActive(false);
-        insideLiquidLabel.gameObject.SetActive(false);
+            outsideHolder.gameObject.SetActive(false);
+            insideHolder.gameObject.SetActive(false);
 
-        liquidLabel.gameObject.SetActive(false);
+            outsideLiquidLabel.gameObject.SetActive(false);
+            insideLiquidLabel.gameObject.SetActive(false);
 
-        runSimButton.gameObject.SetActive(false);
+            liquidLabel.gameObject.SetActive(false);
 
-        burnieHandler.burnie.gameObject.SetActive(false);
-        burnieHandler.speechBubble.gameObject.SetActive(false);
+            runSimButton.gameObject.SetActive(false);
+            runSimButton.GetComponentInChildren<TextMeshProUGUI>().text = "Stop Sim";
 
-        // Lastly, actually run the sim
-        liquidOutside.runSim = true;
+            burnieHandler.burnie.gameObject.SetActive(false);
+            burnieHandler.speechBubble.gameObject.SetActive(false);
+
+            FindAnyObjectByType<CreditsHandler>().gameObject.SetActive(false);
+
+            // Lastly, actually run the sim
+            liquidOutside.runSim = true;
+        }
+        else {
+            // Stop sim
+
+            // Reactivate appropriate main UI elements
+            transform.Find("Holder").gameObject.SetActive(true);
+
+            outsideLiquidLabel.gameObject.SetActive(true);
+            outsideLiquidLabel.text = "Outside liquid: (Not selected)";
+            insideLiquidLabel.gameObject.SetActive(true);
+            insideLiquidLabel.text = "Inside liquid: (Not selected)";
+
+            IodineButton.interactable = false;
+            SodBiButton.interactable = false;
+
+            creditScreen.gameObject.SetActive(true);
+
+            // Lastly, actually run the sim
+            liquidOutside.runSim = false;
+            runSimButton.GetComponentInChildren<TextMeshProUGUI>().text = "Run Sim";
+
+            if (burnieHandler.index == 6) {
+                // After first sim
+                burnieHandler.Talk(7);
+                burnieHandler.index = 7;
+            }
+        }
     }
 }

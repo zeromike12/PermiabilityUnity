@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TimerHandler : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class TimerHandler : MonoBehaviour
 
     public LiquidOutside liquidOutside;
     public liquidInside liquidInside;
+
+    public Button runSimButton;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,7 +34,15 @@ public class TimerHandler : MonoBehaviour
             seconds += (Time.deltaTime * 60); // 1 hour simulation time over 1 real-time minute
 
             timerLabel.text = FormatTime();
+
+            if (seconds >= 3600f) {
+                runSimButton.gameObject.SetActive(true);
+            }
+            else runSimButton.gameObject.SetActive(false);
         }
-        else timerLabel.gameObject.SetActive(false);
+        else {
+            timerLabel.gameObject.SetActive(false);
+            seconds = 0f;
+        }
     }
 }
