@@ -147,5 +147,8 @@ public class ButtonsHandler : MonoBehaviour
         runSimButton.gameObject.SetActive(false);
 
         liquidOutside.runSim = true;
+        liquidOutside2.runSim = true;
+        liquidOutside3.runSim = true;
+        liquidOutside4.runSim = true;
     }
 }
