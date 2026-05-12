@@ -384,8 +384,8 @@ Transform:
   m_GameObject: {fileID: 197020295}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5570118, y: -0.43558878, z: -0.43558818, w: 0.55701274}
-  m_LocalPosition: {x: 28.427, y: -22.4, z: -14.765}
-  m_LocalScale: {x: 459.20712, y: 459.2071, z: 459.2071}
+  m_LocalPosition: {x: 28.427, y: -22.4, z: -17.5687}
+  m_LocalScale: {x: 517.978, y: 459.2071, z: 459.2071}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1214157798}
@@ -954,7 +954,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391381726}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -27.829}
+  m_LocalPosition: {x: 0, y: 0, z: -32.2}
   m_LocalScale: {x: 4.889, y: 4.889, z: 4.889}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1358,9 +1358,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1135164095}
-        m_TargetAssemblyTypeName: ButtonsHandler, Assembly-CSharp
-        m_MethodName: InsideButtonClicked
+      - m_Target: {fileID: 1240653621}
+        m_TargetAssemblyTypeName: OsmosisSimulation, Assembly-CSharp
+        m_MethodName: SetTimeInterval20
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1492,8 +1492,8 @@ Transform:
   m_GameObject: {fileID: 491098693}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5570118, y: -0.43558878, z: -0.43558818, w: 0.55701274}
-  m_LocalPosition: {x: 28.427, y: -22.4, z: -80.432}
-  m_LocalScale: {x: 459.20712, y: 459.2071, z: 459.2071}
+  m_LocalPosition: {x: 28.427, y: -22.4, z: -83.175}
+  m_LocalScale: {x: 502.18893, y: 459.2071, z: 459.2071}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1970508988}
@@ -1526,8 +1526,8 @@ Transform:
   m_GameObject: {fileID: 513807695}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7206067, y: -0.010656564, z: -0.037074875, w: 0.6922701}
-  m_LocalPosition: {x: -0.0507, y: 0.06644, z: -0.2814}
-  m_LocalScale: {x: 0.22409075, y: 1, z: 0.46173}
+  m_LocalPosition: {x: -0.04, y: 0.06644, z: -0.173}
+  m_LocalScale: {x: 0.6063672, y: 2.7059, z: 1.2493953}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1673589086}
@@ -1752,8 +1752,8 @@ Transform:
   m_GameObject: {fileID: 639192141}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7206067, y: -0.010656564, z: -0.037074875, w: 0.6922701}
-  m_LocalPosition: {x: -0.0826, y: 0.06644, z: -1.1484}
-  m_LocalScale: {x: 0.22409075, y: 1, z: 0.46173}
+  m_LocalPosition: {x: -0.09, y: 0.06644, z: -1.224}
+  m_LocalScale: {x: 0.6063672, y: 2.7059, z: 1.2493953}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1110261492}
@@ -2314,9 +2314,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1135164095}
-        m_TargetAssemblyTypeName: ButtonsHandler, Assembly-CSharp
-        m_MethodName: OutsideButtonClicked
+      - m_Target: {fileID: 1240653621}
+        m_TargetAssemblyTypeName: OsmosisSimulation, Assembly-CSharp
+        m_MethodName: SetTimeInterval40
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2453,7 +2453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 40 min
+  m_text: 20 min
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2930,7 +2930,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1107331959}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -107.03}
+  m_LocalPosition: {x: 0, y: 0, z: -103.2}
   m_LocalScale: {x: 4.889, y: 4.889, z: 4.889}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3024,9 +3024,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1135164095}
-        m_TargetAssemblyTypeName: ButtonsHandler, Assembly-CSharp
-        m_MethodName: SodBiButtonClicked
+      - m_Target: {fileID: 1240653621}
+        m_TargetAssemblyTypeName: OsmosisSimulation, Assembly-CSharp
+        m_MethodName: SetTimeInterval60
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3408,25 +3408,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Osmosis
   bags:
-  - bagObj: {fileID: 3857991251330987285}
+  - bagObject: {fileID: 3857991251330987285}
     concentrationPercent: 0
-    initScale: {x: 0.22409075, y: 1, z: 0.46173}
-    weightText: {fileID: 0}
-  - bagObj: {fileID: 1506161421}
+    weightText: {fileID: 2049464787}
+    initialScale: {x: 0, y: 0, z: 0}
+  - bagObject: {fileID: 1506161421}
     concentrationPercent: 25
-    initScale: {x: 0.22409075, y: 1, z: 0.46173}
-    weightText: {fileID: 0}
-  - bagObj: {fileID: 513807695}
+    weightText: {fileID: 391381727}
+    initialScale: {x: 0, y: 0, z: 0}
+  - bagObject: {fileID: 513807695}
     concentrationPercent: 50
-    initScale: {x: 0.22409075, y: 1, z: 0.46173}
-    weightText: {fileID: 0}
-  - bagObj: {fileID: 639192141}
+    weightText: {fileID: 1107331960}
+    initialScale: {x: 0, y: 0, z: 0}
+  - bagObject: {fileID: 639192141}
     concentrationPercent: 75
-    initScale: {x: 0.22409075, y: 1, z: 0.46173}
-    weightText: {fileID: 0}
-  growthFactor: 0.001
-  simulatedTime: 60
-  doSim: 0
+    weightText: {fileID: 2077920384}
+    initialScale: {x: 0, y: 0, z: 0}
+  startingWeightGrams: 15
+  weightGainFactor: 0.005
+  visualSwellMultiplier: 5
+  realLifeDuration: 60
   runButton: {fileID: 2147394669}
   resetButton: {fileID: 0}
 --- !u!4 &1240653622
@@ -3854,7 +3855,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 60 min
+  m_text: '40 min
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3961,8 +3964,8 @@ Transform:
   m_GameObject: {fileID: 1506161421}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7206067, y: -0.010656564, z: -0.037074875, w: 0.6922701}
-  m_LocalPosition: {x: -0.023, y: 0.06644, z: 0.609}
-  m_LocalScale: {x: 0.22409075, y: 1, z: 0.46173}
+  m_LocalPosition: {x: -0.0142, y: 0.06644, z: 0.7015}
+  m_LocalScale: {x: 0.6063672, y: 2.7059, z: 1.2493953}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 894532303}
@@ -4246,7 +4249,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '20 Min
+  m_text: '60 min
 
 '
   m_isRightToLeft: 0
@@ -4275,8 +4278,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5147,7 +5150,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049464786}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 58.217}
+  m_LocalPosition: {x: 0, y: 0, z: 38}
   m_LocalScale: {x: 4.889, y: 4.889, z: 4.889}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5328,7 +5331,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077920383}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -182.32}
+  m_LocalPosition: {x: 0, y: 0, z: -176.7}
   m_LocalScale: {x: 4.889, y: 4.889, z: 4.889}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5667,8 +5670,8 @@ Transform:
   m_GameObject: {fileID: 3857991251330987285}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7206067, y: -0.010656564, z: -0.037074875, w: 0.6922701}
-  m_LocalPosition: {x: 0.128, y: 0.06644, z: 1.609}
-  m_LocalScale: {x: 0.22409075, y: 1, z: 0.46173}
+  m_LocalPosition: {x: 0.12135, y: 0.070469, z: 1.718}
+  m_LocalScale: {x: 0.6063672, y: 2.7059, z: 1.2493953}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1305526270424408534}
