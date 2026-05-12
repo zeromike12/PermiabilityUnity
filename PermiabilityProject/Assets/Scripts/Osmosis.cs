@@ -83,17 +83,10 @@ public class OsmosisSimulation : MonoBehaviour
 
         for (int i = 0; i < bags.Length; i++)
         {
-            // 1. Calculate the REALISTIC target weight first
             float totalWeightGain = bags[i].concentrationPercent * simulatedMinutes * weightGainFactor;
             targetWeights[i] = startingWeightGrams + totalWeightGain;
-
-            // 2. Calculate the true scientific volume ratio
             float volumeRatio = targetWeights[i] / startingWeightGrams;
-
-            // 3. True scale is the cube root of the volume ratio
             float trueScaleRatio = Mathf.Pow(volumeRatio, 1f / 3f);
-
-            // 4. Apply our visual exaggeration (so players can actually see it)
             float visualScaleRatio = 1f + ((trueScaleRatio - 1f) * visualSwellMultiplier);
 
             targetScales[i] = bags[i].initialScale * visualScaleRatio;
@@ -109,10 +102,10 @@ public class OsmosisSimulation : MonoBehaviour
             {
                 if (bags[i].bagObject != null)
                 {
-                    // Lerp visual scale
+                    // Larp visual scale
                     bags[i].bagObject.transform.localScale = Vector3.Lerp(bags[i].initialScale, targetScales[i], easedT);
 
-                    // Lerp UI weight text independently 
+                    // Larp UI weight text independently 
                     float currentWeight = Mathf.Lerp(startingWeightGrams, targetWeights[i], easedT);
                     if (bags[i].weightText != null)
                     {
