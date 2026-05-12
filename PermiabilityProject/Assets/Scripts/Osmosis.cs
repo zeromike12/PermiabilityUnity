@@ -3,13 +3,13 @@ using UnityEngine.UI;
 using System.Collections;
 public class Osmosis : MonoBehaviour
 {
+    [System.Serializable]
     public class DialsysBag
     {
         public GameObject bagObj;
         public float concentrationPercent;
         public Vector3 initScale;
     }
-
     public DialsysBag[] bags;
     static float realDuration = 60f;
     public float growthFactor = 0.001f;
