@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+
 public class Osmosis : MonoBehaviour
 {
     [System.Serializable]
@@ -9,6 +10,7 @@ public class Osmosis : MonoBehaviour
         public GameObject bagObj;
         public float concentrationPercent;
         public Vector3 initScale;
+        public Text weightText;
     }
     public DialsysBag[] bags;
     static float realDuration = 60f;
