@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class BurnieHandler : MonoBehaviour {
+    GameManager gameManager;
+    LiquidOutside liquidOutside;
+
     public Image burnie;
     public Image speechBubble;
     public TextMeshProUGUI dialogueText;
@@ -22,13 +25,23 @@ public class BurnieHandler : MonoBehaviour {
         burnieDialogue = GetComponent<BurnieDialogue>();
     }
 
+    private void Start() {
+        gameManager = FindAnyObjectByType<GameManager>();
+        liquidOutside = FindAnyObjectByType<LiquidOutside>();
+    }
+
     private void Update() {
         if (isTalking) {
-            burnie.gameObject.SetActive(true);
-            speechBubble.gameObject.SetActive(true);
+            if (!liquidOutside.runSim) {
+                burnie.gameObject.SetActive(true);
+                speechBubble.gameObject.SetActive(true);
+            }
 
-            if (Keyboard.current.spaceKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame) {
+            if (Keyboard.current.spaceKey.wasPressedThisFrame) {
                 // Skip is spacebar is pressed
+                SkipDialogue(burnieDialogue.CanContinue(index));
+            }
+            else if (Mouse.current.leftButton.wasPressedThisFrame && !gameManager.isHoveringButton) {
                 SkipDialogue(burnieDialogue.CanContinue(index));
             }
         }
@@ -38,8 +51,15 @@ public class BurnieHandler : MonoBehaviour {
                 speechBubble.gameObject.SetActive(false);
             }
             else {
-                if (Keyboard.current.spaceKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame) {
+                if (Keyboard.current.spaceKey.wasPressedThisFrame) {
                     // Proceed to next line when user clicks or presses space
+
+                    if (canContinueOnClick && index < burnieDialogue.Lines.Length) {
+                        index++; // Move to the next line of dialogue
+                        Talk(index);
+                    }
+                }
+                else if (Mouse.current.leftButton.wasPressedThisFrame && !gameManager.isHoveringButton) {
                     if (canContinueOnClick && index < burnieDialogue.Lines.Length) {
                         index++; // Move to the next line of dialogue
                         Talk(index);

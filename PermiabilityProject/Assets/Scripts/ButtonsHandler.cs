@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -55,10 +56,32 @@ public class ButtonsHandler : MonoBehaviour {
         // If either button isn't filled with /something/, prevent the Run Sim button from being clicked at all.
         if (insideLiquidChoice == "" || outsideLiquidChoice == "") runSimButton.interactable = false;
 
+        if (burnieHandler.index < 3) {
+            insideButton.interactable = false;
+            outsideButton.interactable = false;
+        }
+
+        if (liquidOutside.runSim) {
+            burnieHandler.burnie.gameObject.SetActive(false);
+            burnieHandler.speechBubble.gameObject.SetActive(false);
+        }
+
         switch (burnieHandler.index) {
+            case 3:
+                insideButton.interactable = true;
+                break;
+            case 4:
+                outsideButton.interactable = true;
+                break;
             case 5:
                 // Making the first prediction
-                confirmPredictionButton.gameObject.SetActive(true);
+                if (!burnieHandler.isTalking) {
+                    confirmPredictionButton.gameObject.SetActive(true);
+                }
+                else {
+                    confirmPredictionButton.gameObject.SetActive(false);
+                }
+
                 break;
             case 6:
                 // Both liquids should be selected, check if they're correct
@@ -69,7 +92,22 @@ public class ButtonsHandler : MonoBehaviour {
                     runSimButton.interactable = false;
                 }
                 break;
+            case 8:
+                insideButton.interactable = true;
+                MCresolButton.interactable = true;
+                StarchButton.interactable = true;
+
+                break;
             case 10:
+                // Making the second prediction
+                if (!burnieHandler.isTalking) {
+                    confirmPredictionButton.gameObject.SetActive(true);
+                }
+                else {
+                    confirmPredictionButton.gameObject.SetActive(false);
+                }
+                break;
+            case 11:
                 // Both liquids should be selected, check if they're correct
                 if (insideLiquidChoice == "MCresol" && outsideLiquidChoice == "Iodine") {
                     runSimButton.interactable = true;
@@ -93,14 +131,20 @@ public class ButtonsHandler : MonoBehaviour {
 
         liquidLabel.gameObject.SetActive(true);
         liquidLabel.text = "Outside liquid";
+
+        if (burnieHandler.index == 4) {
+            insideButton.interactable = false;
+        }
     }
 
     public void InsideButtonClicked() {
         insideHolder.SetActive(true);
         insideButton.interactable = false;
 
-        outsideHolder.SetActive(false);
-        outsideButton.interactable = true;
+        if (burnieHandler.index > 3) {
+            outsideHolder.SetActive(false);
+            outsideButton.interactable = true;
+        }
 
         liquidLabel.gameObject.SetActive(true);
         liquidLabel.text = "Inside liquid";
@@ -113,6 +157,10 @@ public class ButtonsHandler : MonoBehaviour {
         StarchButton.interactable = false;
         MCresolButton.interactable = true;
 
+        liquidOutside.insideLiquidName = insideLiquidChoice;
+        liquidOutside.insideliquidColor = new Color(1f, 1f, 1f, 0.3f); // Milky white/clear
+        liquidOutside.insideliquidSize = 100f;
+
         if (burnieHandler.index == 3) {
             // First, click the "Inside" button and choose "Starch".
             burnieHandler.Talk(4);
@@ -120,6 +168,11 @@ public class ButtonsHandler : MonoBehaviour {
 
             IodineButton.interactable = true;
             SodBiButton.interactable = true;
+        }
+
+        if (burnieHandler.index == 4) {
+            insideButton.interactable = false;
+            MCresolButton.interactable = false;
         }
     }
 
@@ -129,6 +182,10 @@ public class ButtonsHandler : MonoBehaviour {
         liquidOutside.insideliquidSize = 2;
         MCresolButton.interactable = false;
         StarchButton.interactable = true;
+
+        liquidOutside.insideLiquidName = insideLiquidChoice;
+        liquidOutside.insideliquidColor = Color.yellow;
+        liquidOutside.insideliquidSize = 15f;
 
         if (burnieHandler.index == 8) {
             // Now, let's take a look at the other options. Go ahead and select "M-Cresol" from the "Inside" liquids screen.
@@ -147,6 +204,10 @@ public class ButtonsHandler : MonoBehaviour {
         IodineButton.interactable = false;
         SodBiButton.interactable = true;
 
+        liquidOutside.outsideLiquidName = outsideLiquidChoice;
+        liquidOutside.liquidColor = new Color(0.8f, 0.4f, 0f);
+        liquidOutside.liquidSize = 2f;
+
         if (burnieHandler.index == 9) {
             // Next, select "Iodine" from the "Outside" liquids screen.
 
@@ -162,10 +223,18 @@ public class ButtonsHandler : MonoBehaviour {
         SodBiButton.interactable = false;
         IodineButton.interactable = true;
 
+        liquidOutside.outsideLiquidName = outsideLiquidChoice;
+        liquidOutside.liquidColor = new Color(0.9f, 0.9f, 0.9f, 0.4f);
+        liquidOutside.liquidSize = 1f;
+
         if (burnieHandler.index == 4) {
             // Next, click the "Outside" button and choose "Sodium Bicarbonate".
             burnieHandler.Talk(5);
             burnieHandler.index = 5;
+
+            liquidLabel.gameObject.SetActive(false);
+            outsideHolder.gameObject.SetActive(false);
+            outsideButton.interactable = false;
         }
     }
 
@@ -191,6 +260,8 @@ public class ButtonsHandler : MonoBehaviour {
             // Run sim
 
             // Deactivate all main UI elements
+            burnieHandler.burnie.gameObject.SetActive(false);
+            burnieHandler.speechBubble.gameObject.SetActive(false);
             transform.Find("Holder").gameObject.SetActive(false);
 
             outsideHolder.gameObject.SetActive(false);
@@ -204,16 +275,16 @@ public class ButtonsHandler : MonoBehaviour {
             runSimButton.gameObject.SetActive(false);
             runSimButton.GetComponentInChildren<TextMeshProUGUI>().text = "Stop Sim";
 
-            burnieHandler.burnie.gameObject.SetActive(false);
-            burnieHandler.speechBubble.gameObject.SetActive(false);
-
-            FindAnyObjectByType<CreditsHandler>().gameObject.SetActive(false);
+            creditScreen.gameObject.SetActive(false);
 
             // Lastly, actually run the sim
             liquidOutside.runSim = true;
+
         }
         else {
             // Stop sim
+
+            liquidOutside.insideBag.transform.localScale = new Vector3(0.2240908f, 1f, 0.46173f);
 
             // Reactivate appropriate main UI elements
             transform.Find("Holder").gameObject.SetActive(true);
@@ -231,11 +302,16 @@ public class ButtonsHandler : MonoBehaviour {
             // Lastly, actually run the sim
             liquidOutside.runSim = false;
             runSimButton.GetComponentInChildren<TextMeshProUGUI>().text = "Run Sim";
+            runSimButton.interactable = false;
 
             if (burnieHandler.index == 6) {
                 // After first sim
                 burnieHandler.Talk(7);
                 burnieHandler.index = 7;
+            }
+            else if (burnieHandler.index == 11) {
+                burnieHandler.Talk(12);
+                burnieHandler.index = 12;
             }
         }
     }

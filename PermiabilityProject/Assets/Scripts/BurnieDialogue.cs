@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BurnieDialogue : MonoBehaviour {
 
@@ -11,7 +12,7 @@ public class BurnieDialogue : MonoBehaviour {
         public bool canContinue = true; // Whether or not the user can click to proceed to the next line of dialogue
     }
 
-    public DialogueLine[] Lines = new DialogueLine[] {
+    public DialogueLine[] Lines = new DialogueLine[] {  
         new DialogueLine { text = "Hey there, I'm Burnie the Bunsen Burner!\n\n(Click anywhere to continue)", canContinue = true },
         new DialogueLine { text = "This is the second line of dialogue, pretty cool right?\n\n(Click anywhere to continue)", canContinue = true },
         new DialogueLine { text = "Don't skip this", canContinue = false },

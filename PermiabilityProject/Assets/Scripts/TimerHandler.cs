@@ -1,12 +1,14 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class TimerHandler : MonoBehaviour
-{
+public class TimerHandler : MonoBehaviour {
     private float seconds;
     public TextMeshProUGUI timerLabel;
+
+    [HideInInspector] public float fastForward = 1f; // 1 by default
 
     public LiquidOutside liquidOutside;
     public liquidInside liquidInside;
@@ -14,8 +16,7 @@ public class TimerHandler : MonoBehaviour
     public Button runSimButton;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    void Start() {
 
     }
 
@@ -27,11 +28,17 @@ public class TimerHandler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+        if (Keyboard.current.rightCtrlKey.isPressed) {
+            fastForward = 10f;
+        }
+        else {
+            fastForward = 1f;
+        }
+
         if (liquidOutside.runSim) {
             timerLabel.gameObject.SetActive(true);
-            seconds += (Time.deltaTime * 60); // 1 hour simulation time over 1 real-time minute
+            seconds += (Time.deltaTime * 60) * fastForward; // 1 hour simulation time over 1 real-time minute
 
             timerLabel.text = FormatTime();
 

@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Click to confirm you made your prediction.
+  m_text: Click here to confirm you made your prediction.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -512,6 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   timerLabel: {fileID: 1483702610}
+  fastForward: 1
   liquidOutside: {fileID: 980826143}
   liquidInside: {fileID: 0}
   runSimButton: {fileID: 2147394669}
@@ -998,6 +999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   dialogueIndex: 0
+  isHoveringButton: 0
 --- !u!1 &448139530
 GameObject:
   m_ObjectHideFlags: 0
@@ -2123,13 +2125,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 17
+  m_fontSizeBase: 17
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2303,14 +2305,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7455f1dc6244b54eb2a468a29aa6878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  outsideLiquidName: 
   liquidSize: 1
   liquidColor: {r: 0, g: 0, b: 1, a: 1}
   insideBag: {fileID: 3857991251330987285}
+  insideLiquidName: 
   insideliquidSize: 1
   insideliquidColor: {r: 1, g: 0, b: 0.018271208, a: 1}
   runSim: 0
   diffusionSpeed: 0.01
-  currentDiffusion: 0
 --- !u!1 &1108165587
 GameObject:
   m_ObjectHideFlags: 0
@@ -4702,7 +4705,7 @@ MonoBehaviour:
   Lines:
   - text: Hey there! I'm Burnie, Burnie the Bunsen Burner!\n\n(Click to continue)
     canContinue: 1
-  - text: Welcome to my Permiability Experiment, where you'll see how different liquids
+  - text: Welcome to my Permeability Experiment, where you'll see how different liquids
       move in or out of a small (specific name) bag.\n\n(Click to continue)
     canContinue: 1
   - text: Let's start by selecting the liquid that'll go inside the bag, as well
@@ -4713,20 +4716,31 @@ MonoBehaviour:
   - text: Next, click the "Outside" button and choose "Sodium Bicarbonate".
     canContinue: 0
   - text: Perfect! Now that we have our liquids in the right places, let's make a
-      prediction for what we think is going to happen.
+      prediction for what we think is going to happen.\n\n(Ex. Will the Starch permeate
+      out of the bag?)
     canContinue: 0
-  - text: Whenever you're ready, click "Run Simulation".
+  - text: Whenever you're ready, click "Run Simulation".\n\nNormally, the experiment
+      would take an hour, but here, we'll just simulate an hour over 1 real-life
+      minute!
     canContinue: 0
   - text: How did your prediction compare to what you observed?\nPlease write down
       what was similar/different.\n\n(Click to continue)
     canContinue: 1
-  - text: Now, let's take a look at the other options. Go ahead and select "M-Cresol"
+  - text: Now, let's take a look at the other options.\n\nGo ahead and select "M-Cresol"
       from the "Inside" liquids screen.
     canContinue: 0
   - text: Next, select "Iodine" from the "Outside" liquids screen.
     canContinue: 0
   - text: We're almost ready to run the next simulation.\nFirst, make your second
       prediction for what you think is going to happen.
+    canContinue: 0
+  - text: Finally, run the simulation again.
+    canContinue: 0
+  - text: Lastly, write down how your prediction compared to what you observed.\n\n(Click
+      to continue)
+    canContinue: 1
+  - text: That concludes the experiments!\n\nUntil next time, I'm Burnie the Bunsen
+      Burner.
     canContinue: 0
 --- !u!1 &2147394667
 GameObject:
