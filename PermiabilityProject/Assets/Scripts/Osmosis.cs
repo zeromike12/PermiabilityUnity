@@ -77,6 +77,9 @@ public class OsmosisSimulation : MonoBehaviour
         isSimulating = true;
         float elapsedTime = 0f;
 
+        runButton.gameObject.SetActive(false);
+        resetButton.gameObject.SetActive(true);
+
         // Arrays to hold our final targets
         Vector3[] targetScales = new Vector3[bags.Length];
         float[] targetWeights = new float[bags.Length];
@@ -137,7 +140,8 @@ public class OsmosisSimulation : MonoBehaviour
     {
         StopAllCoroutines();
         isSimulating = false;
-
+        runButton.gameObject.SetActive(true);
+        resetButton.gameObject.SetActive(false);
         foreach (var bag in bags)
         {
             if (bag.bagObject != null)
