@@ -2,17 +2,14 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class TimerHandler : MonoBehaviour
-{
+public class TimerHandler : MonoBehaviour {
     private float seconds;
     public TextMeshProUGUI timerLabel;
 
-    public LiquidOutside liquidOutside;
-    public liquidInside liquidInside;
+    public OsmosisSimulation osmosis;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    void Start() {
 
     }
 
@@ -24,10 +21,14 @@ public class TimerHandler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (liquidOutside.runSim) {
+    void Update() {
+        if (osmosis.isSimulating) {
             seconds += (Time.deltaTime * 60); // 1 hour simulation time over 1 real-time minute
+
+            timerLabel.text = FormatTime();
+        }
+        else {
+            seconds = 0f;
 
             timerLabel.text = FormatTime();
         }

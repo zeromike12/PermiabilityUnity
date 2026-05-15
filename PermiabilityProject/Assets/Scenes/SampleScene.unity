@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 8d5bc46c30bd3b34693a5858587b3015, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -508,8 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   timerLabel: {fileID: 1483702610}
-  liquidOutside: {fileID: 980826143}
-  liquidInside: {fileID: 0}
+  osmosis: {fileID: 1240653621}
 --- !u!1 &279634017
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +703,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 292306827}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1240653621}
+        m_TargetAssemblyTypeName: OsmosisSimulation, Assembly-CSharp
+        m_MethodName: ResetSimulation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &292306827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1404,7 +1415,7 @@ GameObject:
   - component: {fileID: 465262142}
   - component: {fileID: 465262141}
   m_Layer: 0
-  m_Name: InsideButton
+  m_Name: 20Min
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2478,7 +2489,7 @@ GameObject:
   - component: {fileID: 877182980}
   - component: {fileID: 877182979}
   m_Layer: 0
-  m_Name: OutsideButton
+  m_Name: 40Min
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3188,7 +3199,7 @@ GameObject:
   - component: {fileID: 1108165590}
   - component: {fileID: 1108165589}
   m_Layer: 0
-  m_Name: SodBiButton
+  m_Name: 60Min
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3453,7 +3464,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135164090}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d7ff835c92862f48bee1b16ddb8fd6d, type: 3}
   m_Name: 
@@ -3514,7 +3525,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: eaddd3ef72440764abaf97620c1475f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a404b5243c46784887c24d5bfb408be, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3737,8 +3748,16 @@ MonoBehaviour:
   weightGainFactor: 0.005
   visualSwellMultiplier: 5
   realLifeDuration: 60
+  simulatedMinutes: 20
+  isSimulating: 0
   runButton: {fileID: 2147394669}
   resetButton: {fileID: 292306826}
+  simButton_20: {fileID: 465262141}
+  simButton_40: {fileID: 877182979}
+  simButton_60: {fileID: 1108165589}
+  confirmPredictionButton: {fileID: 1958248385}
+  creditScreen: {fileID: 279634017}
+  buttonHolder: {fileID: 816604278}
 --- !u!4 &1240653622
 Transform:
   m_ObjectHideFlags: 0
@@ -3858,10 +3877,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1664444758}
   - {fileID: 824322558}
   - {fileID: 252898037}
   - {fileID: 1135164091}
-  - {fileID: 1664444758}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1440497022
@@ -4787,11 +4806,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BurnieDialogue
   Lines:
-  - text: Hey there! I'm Burnie, Burnie the Bunsen Burner!\n\n(Click to continue)
+  - text: Hey there! I'm Burnie, Burnie the Bunsen Burner!\n\nWelcome to my Osmosis
+      Experiment!\n\n(Click to continue)
     canContinue: 1
-  - text: Welcome to my Osmosis Experiment, where you'll see (fill in the blank idk
-      how this works I'm just the dev)
+  - text: Here, you'll see 4 dialysis bags in beakers of distilled water, ranging
+      from 0% concentration of Karo syrup (the control) to 75% concentration in 25%
+      increments.\n\n(Click to continue)
     canContinue: 1
+  - text: It's important to remember that water diffuses from areas of low concentration
+      to areas of low concentration.\n\n(Click to continue)
+    canContinue: 1
+  - text: To get started, click on the "20 min" button to set the simulation time
+      to 20 minutes.
+    canContinue: 0
+  - text: Perfect! When we run the simulation, each dialysis bag will change in weight
+      as the simulation goes on.\n\n(Click to continue)
+    canContinue: 1
+  - text: Remember how water diffuses in different levels of concentration and make
+      a prediction to which dialysis bag will have the greatest weight at the end
+      of the simulation.
+    canContinue: 0
+  - text: For the sake of this game, each experiment will last 1 real-life minute.\n\nNow,
+      let's run the simulation.
+    canContinue: 0
+  - text: Great! Let's move onto the 40-minute interval. Go ahead and click the "40
+      min" button.
+    canContinue: 0
+  - text: Just like last time, make a prediction to which dialysis bag will have
+      the greatest weight at the end of the simulation and why.
+    canContinue: 0
+  - text: Now run the simulation again.
+    canContinue: 0
+  - text: Finally, let's end this experiment off with the 60-minute interval.
+    canContinue: 0
+  - text: Once again, make your prediction on which bag will be the heaviest and
+      why.
+    canContinue: 0
+  - text: And now, run the simulation one last time.
+    canContinue: 0
+  - text: That concludes the Osmosis Experiment!\n\nUntil next time, I'm Burnie the
+      Bunsen Burner!
+    canContinue: 0
+  - text: You can reset the simulation now.\n\nMake sure to jot down the end weights.
+    canContinue: 0
 --- !u!114 &1664444760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5265,8 +5322,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ButtonsHandler, Assembly-CSharp
+      - m_Target: {fileID: 1240653621}
+        m_TargetAssemblyTypeName: OsmosisSimulation, Assembly-CSharp
         m_MethodName: ConfirmPredictionButtonClicked
         m_Mode: 1
         m_Arguments:
@@ -6148,7 +6205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2147394670}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1240653621}
+        m_TargetAssemblyTypeName: OsmosisSimulation, Assembly-CSharp
+        m_MethodName: StartSimulation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2147394670
 MonoBehaviour:
   m_ObjectHideFlags: 0
