@@ -85,7 +85,7 @@ public class ButtonsHandler : MonoBehaviour {
                 break;
             case 6:
                 // Both liquids should be selected, check if they're correct
-                if (insideLiquidChoice == "Starch" && outsideLiquidChoice == "SodBi") {
+                if (insideLiquidChoice == "Iodine" && outsideLiquidChoice == "SodBi") {
                     runSimButton.interactable = true;
                 }
                 else {
@@ -109,7 +109,7 @@ public class ButtonsHandler : MonoBehaviour {
                 break;
             case 11:
                 // Both liquids should be selected, check if they're correct
-                if (insideLiquidChoice == "MCresol" && outsideLiquidChoice == "Iodine") {
+                if (insideLiquidChoice == "MCresol" && outsideLiquidChoice == "Starch") {
                     runSimButton.interactable = true;
                 }
                 else {
@@ -151,8 +151,8 @@ public class ButtonsHandler : MonoBehaviour {
     }
 
     public void StarchButtonClicked() {
-        insideLiquidChoice = "Starch";
-        insideLiquidLabel.text = "Inside Liquid: Starch";
+        insideLiquidChoice = "Iodine";
+        insideLiquidLabel.text = "Inside Liquid: Lugol's Solution (Iodine)";
         liquidOutside.insideliquidSize = 1;
         StarchButton.interactable = false;
         MCresolButton.interactable = true;
@@ -198,8 +198,8 @@ public class ButtonsHandler : MonoBehaviour {
     }
 
     public void IodineButtonClicked() {
-        outsideLiquidChoice = "Iodine";
-        outsideLiquidLabel.text = "Outside Liquid: Iodine";
+        outsideLiquidChoice = "Starch";
+        outsideLiquidLabel.text = "Outside Liquid: Starch";
         liquidOutside.liquidSize = 3;
         IodineButton.interactable = false;
         SodBiButton.interactable = true;
@@ -258,6 +258,8 @@ public class ButtonsHandler : MonoBehaviour {
     public void RunSimButtonClicked() {
         if (!liquidOutside.runSim) {
             // Run sim
+
+            liquidOutside.diffusionSpeed = 0.005f;
 
             // Deactivate all main UI elements
             burnieHandler.burnie.gameObject.SetActive(false);

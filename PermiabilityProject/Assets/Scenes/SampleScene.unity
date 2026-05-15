@@ -313,9 +313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Iodine
-
-'
+  m_text: Starch
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1123,7 +1121,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -237.25903, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3695,7 +3693,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -259.98438, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4348,7 +4346,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Starch
+  m_text: Lugol's Solution (Iodine)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4375,8 +4373,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
-  m_fontSizeBase: 42
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4706,12 +4704,13 @@ MonoBehaviour:
   - text: Hey there! I'm Burnie, Burnie the Bunsen Burner!\n\n(Click to continue)
     canContinue: 1
   - text: Welcome to my Permeability Experiment, where you'll see how different liquids
-      move in or out of a small (specific name) bag.\n\n(Click to continue)
+      move in or out of a small dialysis bag.\n\n(Click to continue)
     canContinue: 1
   - text: Let's start by selecting the liquid that'll go inside the bag, as well
       as the liquid going in the beaker.\n\n(Click to continue)
     canContinue: 1
-  - text: First, click the "Inside" button and choose "Starch".
+  - text: First, click the "Inside" button and choose "Lugol's Solution", also known
+      as Iodine.
     canContinue: 0
   - text: Next, click the "Outside" button and choose "Sodium Bicarbonate".
     canContinue: 0
@@ -4729,7 +4728,7 @@ MonoBehaviour:
   - text: Now, let's take a look at the other options.\n\nGo ahead and select "M-Cresol"
       from the "Inside" liquids screen.
     canContinue: 0
-  - text: Next, select "Iodine" from the "Outside" liquids screen.
+  - text: Next, select "Starch" from the "Outside" liquids screen.
     canContinue: 0
   - text: We're almost ready to run the next simulation.\nFirst, make your second
       prediction for what you think is going to happen.
